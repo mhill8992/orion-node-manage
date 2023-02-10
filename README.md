@@ -7,7 +7,7 @@ For more info please see the module file located in ./library/orion_node_manage.
 Requirements
 ------------
 
-This module will install all pip packages needed by the module.
+This module will install all pip packages to the controller node needed by the module.
 
 
 Example Playbook
@@ -25,49 +25,49 @@ I recommend running this on the local node as follows:
       hosts: all
       tasks:
         - name: Unmanage node via IP Address
-          local_action:
-            module: orion_node_manage
+          orion_node_manage:
             ip_address: hostvars[inventory_hostname]['ansible_default_ipv4']['address']
             state: unmanaged
             username: "{{ sw_username }}"
             password: "{{ sw_password }}"
             hostname: "{{ sw_hostname }}"
+          delegate_to: FQDN of tower/AAP system
 
         - name: Unmanage node via DNS Name
-          local_action:
-            module: orion_node_manage
+          orion_node_manage:
             dns_name: "{{inventory_hostname}}"
             state: unmanaged
             username: "{{ sw_username }}"
             password: "{{ sw_password }}"
             hostname: "{{ sw_hostname }}"
+          delegate_to: FQDN of tower/AAP system
 
         - name: Remanage node via IP Address
-          local_action:
-            module: orion_node_manage
+          orion_node_manage:
             ip_address: hostvars[inventory_hostname]['ansible_default_ipv4']['address']
             state: managed
             username: "{{ sw_username }}"
             password: "{{ sw_password }}"
             hostname: "{{ sw_hostname }}"
+          delegate_to: FQDN of tower/AAP system
 
         - name: Remanage node via DNS Name
-          local_action:
-            module: orion_node_manage
+          orion_node_manage:
             dns_name: "{{inventory_hostname}}"
             state: managed
             username: "{{ sw_username }}"
             password: "{{ sw_password }}"
             hostname: "{{ sw_hostname }}"
+          delegate_to: FQDN of tower/AAP system
 
         - name: Decommission node via IP Address
-          local_action:
-            module: orion_node_manage
+          orion_node_manage:
             ip_address: hostvars[inventory_hostname]['ansible_default_ipv4']['address']
             state: decommissioned
             username: "{{ sw_username }}"
             password: "{{ sw_password }}"
             hostname: "{{ sw_hostname }}"
+          delegate_to: FQDN of tower/AAP system
 
 License
 -------
